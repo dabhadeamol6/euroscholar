@@ -5,157 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EuroScholar - Your Gateway to European Education</title> 
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <script type="module" crossorigin src="./assets/index-DQxFUWDX.js"></script>
+    <script type="module" crossorigin src="../assets/index-DQxfUWDX.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-D8vRwNk1.css">
-    <style>
-      /* Hide the E text and show logo */
-      span.text-white.font-display.font-bold.text-2xl {
-        font-size: 0 !important;
-        color: transparent !important;
-        display: inline-block !important;
-        width: 55px !important;
-        height: 55px !important;
-        background-image: url('/images/logo.png') !important;
-        background-size: contain !important;
-        background-repeat: no-repeat !important;
-        background-position: center !important;
-        background-color: transparent !important;
-        border-radius: 0 !important;
-        vertical-align: middle !important;
-        position: relative !important;
-      }
-      
-      /* Floating Support Button with Animation */
-      .support-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 60px;
-        height: 60px;
-        background-color: #003366;
-        border-radius: 50%;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-      }
-      
-      @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(0, 51, 102, 0.7); }
-        70% { box-shadow: 0 0 0 15px rgba(0, 51, 102, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(0, 51, 102, 0); }
-      }
-      
-      .support-btn:hover {
-        transform: scale(1.1) translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        animation: none;
-      }
-      
-      .support-btn img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        transition: transform 0.5s ease;
-      }
-      
-      .support-btn:hover img {
-        transform: rotate(360deg);
-      }
-      
-      .support-menu {
-        position: fixed;
-        bottom: 90px;
-        right: 20px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        padding: 15px;
-        display: none;
-        flex-direction: column;
-        gap: 10px;
-        z-index: 1000;
-        min-width: 180px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-      }
-      
-      .support-menu.active {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-      }
-      
-      .support-menu a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 12px 15px;
-        text-decoration: none;
-        color: #333;
-        border-radius: 8px;
-        transition: all 0.2s ease;
-        font-family: sans-serif;
-        font-size: 14px;
-      }
-      
-      .support-menu a:hover {
-        background: #f0f0f0;
-        transform: translateX(5px);
-      }
-      
-      .support-menu img {
-        width: 24px;
-        height: 24px;
-      }
-      
-      .menu-label {
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 5px;
-        padding-left: 5px;
-        font-family: sans-serif;
-        font-weight: bold;
-      }
-    </style>
+  <style>
+  /* Hide the E text */
+  span.text-white.font-display.font-bold.text-2xl {
+    font-size: 0 !important;
+    color: transparent !important;
+    display: inline-block !important;
+    width: 55px !important;
+    height: 55px !important;
+    background-image: url('/images/logo.png') !important;
+    background-size: contain !important;  /* Shows full logo without cropping */
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: transparent !important;  /* No blue background */
+    border-radius: 0 !important;  /* No forced circle - original shape */
+    vertical-align: middle !important;
+    position: relative !important;
+  }
+</style>
   </head>
   <body>
     <div id="root"></div>
-    
-    <div class="support-btn" onclick="toggleSupport()">
-      <img src="/images/logo.png" alt="Support">
-    </div>
-
-    <div class="support-menu" id="supportMenu">
-      <div class="menu-label">Contact Us</div>
-      <a href="mailto:info@euroscholar.in">
-        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968534.png" alt="Email">
-        <span>Email</span>
-      </a>
-      <a href="https://wa.me/918788898563" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-        <span>WhatsApp</span>
-      </a>
-    </div>
-
-    <script>
-      function toggleSupport() {
-        var menu = document.getElementById('supportMenu');
-        menu.classList.toggle('active');
-      }
-      
-      document.addEventListener('click', function(event) {
-        var btn = document.querySelector('.support-btn');
-        var menu = document.getElementById('supportMenu');
-        if (!btn.contains(event.target) && !menu.contains(event.target)) {
-          menu.classList.remove('active');
-        }
-      });
-    </script>
   </body>
 </html>
