@@ -7,21 +7,20 @@
     <script type="module" crossorigin src="../assets/index-DQxfUWDX.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-D8vRwNk1.css">
     <style>
-  /* Hide the E logo - try multiple selectors */
-  .logo-icon, .e-icon, .E-icon, [class*="logo"] svg, header svg, .brand svg, nav svg {
-    display: none !important;
-  }
-  
-  /* Add your logo as background image */
-  .logo-container, .brand-logo, header .logo, .nav-logo, [class*="Logo"], header a[href="/"] {
+  /* Hide the E text */
+  span.text-white.font-display.font-bold.text-2xl,
+  .font-display.text-2xl,
+  .text-white.font-bold.text-2xl {
+    font-size: 0 !important;
+    color: transparent !important;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
     background-image: url('/images/logo.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 45px;
-    height: 45px;
-    display: inline-block;
-    vertical-align: middle;
+    border-radius: 50%;
   }
 </style>
   </head>
