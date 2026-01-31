@@ -32,76 +32,161 @@
     right: 20px;
     width: 60px;
     height: 60px;
-    background-color: #003366;
+    background: linear-gradient(135deg, #003366 0%, #004080 100%);
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 20px rgba(0,51,102,0.4);
     z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 2px solid rgba(255,255,255,0.2);
   }
   
   .support-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 8px 30px rgba(0,51,102,0.6);
+    background: linear-gradient(135deg, #004080 0%, #0059b3 100%);
+  }
+  
+  .support-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* Pulse animation ring */
+  .support-btn::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(0,51,102,0.3);
+    animation: pulse-ring 2s ease-out infinite;
+    z-index: -1;
+  }
+  
+  @keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+  
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  
+  .support-btn {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .support-btn:hover {
+    animation: none;
   }
   
   .support-btn img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
+    transition: transform 0.3s ease;
   }
   
+  .support-btn:hover img {
+    transform: scale(1.1);
+  }
+  
+  /* Support Menu */
   .support-menu {
     position: fixed;
     bottom: 90px;
     right: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     padding: 15px;
     display: none;
     flex-direction: column;
     gap: 10px;
     z-index: 1000;
-    min-width: 180px;
+    min-width: 200px;
+    border: 1px solid rgba(255,255,255,0.3);
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   
   .support-menu.active {
     display: flex;
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
   
   .support-menu a {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     padding: 12px 15px;
     text-decoration: none;
     color: #333;
-    border-radius: 8px;
-    transition: background 0.2s;
-    font-family: sans-serif;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 14px;
+    font-weight: 500;
   }
   
   .support-menu a:hover {
-    background: #f0f0f0;
+    background: linear-gradient(135deg, #f0f4ff 0%, #e6eeff 100%);
+    transform: translateX(5px);
+    color: #003366;
   }
   
   .support-menu img {
     width: 24px;
     height: 24px;
+    transition: transform 0.2s ease;
+  }
+  
+  .support-menu a:hover img {
+    transform: scale(1.2);
   }
   
   .menu-label {
-    font-size: 12px;
+    font-size: 11px;
     color: #666;
     margin-bottom: 5px;
     padding-left: 5px;
-    font-family: sans-serif;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Notification badge */
+  .support-btn::after {
+    content: '1';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    animation: badge-pulse 2s infinite;
+  }
+  
+  @keyframes badge-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
   }
 </style>
   </head>
@@ -124,9 +209,19 @@
     </div>
 
     <script>
-      function toggleSupport() {
+    function toggleSupport() {
         var menu = document.getElementById('supportMenu');
+        var btn = document.querySelector('.support-btn');
+        
         menu.classList.toggle('active');
+        
+        if (menu.classList.contains('active')) {
+          btn.style.transform = 'rotate(45deg) scale(1.1)';
+          btn.style.background = 'linear-gradient(135deg, #ff4757 0%, #ff6348 100%)';
+        } else {
+          btn.style.transform = '';
+          btn.style.background = '';
+        }
       }
       
       document.addEventListener('click', function(event) {
@@ -134,6 +229,8 @@
         var menu = document.getElementById('supportMenu');
         if (!btn.contains(event.target) && !menu.contains(event.target)) {
           menu.classList.remove('active');
+          btn.style.transform = '';
+          btn.style.background = '';
         }
       });
     </script>
